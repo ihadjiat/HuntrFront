@@ -1,0 +1,17 @@
+[
+    {
+      "enterpriseId": 0,
+      "name": "World Company",
+      "location":"Metropolis"
+    },
+    {
+      "enterpriseId": 1,
+      "name": "Umbrella Corp",
+      "location" : "Arkham"
+    },
+    {
+      "enterpriseId": 2,
+      "name": "Capsule Corp",
+      "location" : "Central City"
+    }
+]

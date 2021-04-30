@@ -1,0 +1,26 @@
+<div class='card'>
+    <div class="card-header">
+        {{Enterprise?.name}}
+    </div>
+</div>
+<div class="card-body" *ngIf="Enterprise" >
+    <div class='row' >
+        <div class='col-md-8'>
+          <div class='row'>
+            <div class='col-md-4'>Name:</div>
+            <div class='col-md-8'>{{Enterprise.name}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Localisation:</div>
+            <div class='col-md-8'>{{Enterprise.location}}</div>
+          </div>
+        </div>
+    </div>
+    <div class='card-footer'>
+        <button class='btn btn-outline-secondary'
+                style='width:80px'
+                (click)='onBack()'>
+          <i class='fa fa-chevron-left'></i> Back
+        </button>
+      </div>
+</div>
