@@ -1,0 +1,237 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}} :
+  </div>
+
+  <div class="card-body">
+    <form novalidate (ngSubmit)="save()" [formGroup]="enterpriseForm">
+
+      <div class='row'>
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="nameId">Nom de l'entreprise</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="nameId"
+                        type="text"
+                        placeholder="Nom de l'entreprise (Obligatoire!)"
+                        formControlName="publicName"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('publicName')?.touched || enterpriseForm.get('publicName')?.dirty) && !enterpriseForm.get('publicName')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('publicName')?.errors?.required">
+                  Veuillez saisir un nom d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('publicName')?.errors?.minlength">
+                  Le nom doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="siretId">Numéro SIRET</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                class="form-control"
+                id="siretId"
+                type="text"
+                placeholder="Numéro SIRET (Obligatoire!)"
+                formControlName="siret"
+                [ngClass]="{'is-invalid': (enterpriseForm.get('siret')?.touched || enterpriseForm.get('siret')?.dirty) && !enterpriseForm.get('siret')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('siret')?.errors?.required">
+                  Veuillez saisir un nom numéro SIRET
+                </span>
+                <span *ngIf="enterpriseForm.get('siret')?.errors?.minlength">
+                  Le siret doit être composé de 14 chiffres
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class='row'>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="adress1Id">Adresse de l'entreprise</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="adress1Id"
+                        type="text"
+                        placeholder="Adresse de l'entreprise"
+                        formControlName="adress1"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('adress1')?.touched || enterpriseForm.get('adress1')?.dirty) && !enterpriseForm.get('adress1')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('adress1')?.errors?.required">
+                  Veuillez saisir une adresse d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('adress1')?.errors?.minlength">
+                  L'adresse doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="adress2Id">Complément d'adresse</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="adress2Id"
+                        type="text"
+                        placeholder="Complément d'adresse"
+                        formControlName="adress2"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('adress2')?.touched || enterpriseForm.get('adress2')?.dirty) && !enterpriseForm.get('adress2')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('adress2')?.errors?.required">
+                  Veuillez saisir un nom d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('adress2')?.errors?.minlength">
+                  Le nom doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class='row'>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="adress1Id">Adresse de l'entreprise</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="adress1Id"
+                        type="text"
+                        placeholder="Adresse de l'entreprise"
+                        formControlName="adress1"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('adress1')?.touched || enterpriseForm.get('adress1')?.dirty) && !enterpriseForm.get('adress1')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('adress1')?.errors?.required">
+                  Veuillez saisir une adresse d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('adress1')?.errors?.minlength">
+                  L'adresse doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="adress2Id">Complément d'adresse</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="adress2Id"
+                        type="text"
+                        placeholder="Complément d'adresse"
+                        formControlName="adress2"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('adress2')?.touched || enterpriseForm.get('adress2')?.dirty) && !enterpriseForm.get('adress2')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('adress2')?.errors?.required">
+                  Veuillez saisir un nom d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('adress2')?.errors?.minlength">
+                  Le nom doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      
+      <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label" for="nameId">First Name</label>
+          <div class="col-md-8">
+              <input
+                    class="form-control"
+                    id="nameId"
+                    type="text"
+                    placeholder="Nom de l'entreprise (Obligatoire!)"
+                    formControlName="name"
+                    [ngClass]="{'is-invalid': (enterpriseForm.get('name')?.touched || enterpriseForm.get('name')?.dirty) && !enterpriseForm.get('name')?.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="enterpriseForm.get('name')?.errors?.required">
+              Veuillez saisir un nom d'entreprise
+            </span>
+            <span *ngIf="enterpriseForm.get('name')?.errors?.minlength">
+              Le nom doit comporter au moins 3 caractères
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="LocationId">Localisation</label>
+        <div class="col-md-8">
+            <input
+                  class="form-control"
+                  id="LocationId"
+                  type="text"
+                  placeholder="Ville du siège social (Obligatoire!)"
+                  formControlName="location"
+                  [ngClass]="{'is-invalid': (enterpriseForm.get('location')?.touched || enterpriseForm.get('location')?.dirty) && !enterpriseForm.get('location')?.valid }" />
+        <span class="invalid-feedback">
+          <span *ngIf="enterpriseForm.get('location')?.errors?.required">
+            Veuillez saisir un ville de résidence pour l'entreprise
+          </span>
+          <span *ngIf="enterpriseForm.get('location')?.errors?.minlength">
+            Le ville doit comporter au moins 3 caractères
+          </span>
+        </span>
+      </div>
+    </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  type="submit"
+                  style="width:80px"
+                  [title]="enterpriseForm.valid ? 'Sauvegarde de vos données' : 'Veuillez corriger les erreurs du formulaire '"
+                  [disabled]="!enterpriseForm.valid">
+            Save
+          </button>
+
+        </div>
+        <div class="offset-md-5 col-md-4">
+          <button class="btn btn-primary mr-4"
+                  (click)='OnCancel()'
+                  style="width:80px"
+                  >
+            Annuler
+          </button>
+
+        </div>
+      </div>
+
+
+    </form>
