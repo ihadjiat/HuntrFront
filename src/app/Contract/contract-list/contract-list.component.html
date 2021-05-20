@@ -1,0 +1,48 @@
+<div class='card'>
+    <div class='card-header'>
+      {{PageTitle}}
+    </div>
+    <div class='card-body'>
+      <div class='row'>
+        <div class='col-md-2'>Filter by:</div>
+        <div class='col-md-4'>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+        </div>
+      </div>
+      <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Emploi</th>
+              <th>Expérience</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let contract of People'
+                (click)="contractDetails(contract.contractId)">
+              <td>{{ contract.lastName }}</td>
+              <td>{{ contract.firstName }}</td>
+              <td>{{ contract.job }}</td>
+              <td>12</td>
+              <td>
+                <button class='btn btn-outline-secondary'
+                      [routerLink]="['/contract', contract.contractId, 'edit']">
+                  <i class='fa fa-edit'></i>
+                </button>
+
+                <button class='btn btn-outline-secondary'
+                        (click)='OnDelete(contract.contractId)'>
+                  <i class='fa fa-trash'></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

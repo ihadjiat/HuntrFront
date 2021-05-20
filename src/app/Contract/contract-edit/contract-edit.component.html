@@ -1,0 +1,206 @@
+<div class='card'>
+  <form novalidate (ngSubmit)="save()" [formGroup]="contractForm">
+    <div class="card-header">
+        <h1>
+          <div class='row'>
+          <div class="col-md">
+            <label for="firstName">Prénom</label>
+            <input
+                  class="form-control"
+                  id="firstName"
+                  type="text"
+                  placeholder="Courriel du candidat"
+                  formControlName="firstName"
+                  title="Prénom du candidat">
+            <span class="invalid-feedback">
+              <span *ngIf="contractForm.get('firstName')?.errors?.required">
+                Veuillez saisir une adresse courriel pour le candidat
+              </span>
+              <span *ngIf="contractForm.get('firstName')?.errors?.minlength">
+                Le courriel n'est pas au bon format
+              </span>
+            </span>
+          </div>
+
+          <div class="col-md">
+            <label for="lastName">Nom</label>
+            <input
+                  class="form-control"
+                  name="lastName"
+                  id="lastName"
+                  formControlName="lastName"
+                  title="Nom de famille du candidat">
+            <span class="invalid-feedback">
+              <span *ngIf="contractForm.get('lastName')?.errors?.required">
+                Veuillez saisir une adresse courriel pour le candidat
+              </span>
+              <span *ngIf="contractForm.get('lastName')?.errors?.minlength">
+                Le courriel n'est pas au bon format
+              </span>
+            </span>
+          </div>
+          </div>
+         </h1>
+        <h4>
+          <div class="col-md">
+            <label for="job">Emploi</label>
+            <input
+                  class="form-control"
+                  name="job"
+                  id="job"
+                  formControlName="job"
+                  title="Emploi du candidat">
+            <span class="invalid-feedback">
+              <span *ngIf="contractForm.get('job')?.errors?.required">
+                Veuillez saisir une adresse courriel pour le candidat
+              </span>
+              <span *ngIf="contractForm.get('job')?.errors?.minlength">
+                Le courriel n'est pas au bon format
+              </span>
+            </span>
+          </div>
+        </h4>
+    </div>
+
+    <div class="card-body" *ngIf="contract" >
+
+
+
+      <div class='row'>
+        <div class="col-md">
+          <label for="Adress1">Sexe</label>
+          <input readonly=""  class="form-control" name="gender" id="gender" value="{{contract.gender.toString()}}" title="Sexe du candidat">
+        </div>
+      </div>
+
+
+
+    <div class='row'>
+
+      <div class="col-md">
+        <label for="emailAdressId">Courriel</label>
+        <input
+              class="form-control"
+              id="emailAdressId"
+              type="text"
+              placeholder="Courriel du candidat"
+              formControlName="emailAdress"
+              title="Courriel du candidat">
+        <span class="invalid-feedback">
+          <span *ngIf="contractForm.get('emailAdress')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="contractForm.get('emailAdress')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md">
+        <label for="phoneNumber">Téléphone</label>
+        <input
+              class="form-control"
+              name="phoneNumber"
+              id="phoneNumber"
+              formControlName="phoneNumber"
+              title="Numéro de téléphone du candidat">
+        <span class="invalid-feedback">
+          <span *ngIf="contractForm.get('phoneNumber')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="contractForm.get('phoneNumber')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md">
+        <label for="linkedIn">LinkedIn</label>
+        <input
+              class="form-control"
+              name="linkedIn"
+              id="linkedIn"
+              formControlName="linkedIn"
+              [ngClass]="{'is-invalid': (contractForm.get('linkedIn')?.touched || contractForm.get('linkedIn')?.dirty) && !contractForm.get('linkedIn')?.valid }"
+              title="Lien vers le profil LinkedIn du candidat">
+        <span class="invalid-feedback">
+          <span *ngIf="contractForm.get('linkedIn')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="contractForm.get('linkedIn')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+    </div>
+
+
+
+    <div class='row'>
+
+      <div class="col-md">
+        <label for="city">Ville</label>
+        <input
+                class="form-control"
+                name="city"
+                id="city"
+                formControlName="city"
+                [ngClass]="{'is-invalid': (contractForm.get('city')?.touched || contractForm.get('city')?.dirty) && !contractForm.get('city')?.valid }">
+        <span class="invalid-feedback">
+          <span *ngIf="contractForm.get('city')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="contractForm.get('city')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md">
+        <label for="zipCode">Code postal</label>
+        <input
+                type="text"
+                class="form-control"
+                name="zipCode"
+                id="zipCode"
+                value="{{contract.zipCode}}"
+                formControlName="zipCode"
+                title="Code postal du candidat">
+        <span class="invalid-feedback">
+          <span *ngIf="contractForm.get('zipCode')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="contractForm.get('zipCode')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+    </div>
+
+
+
+    <div class="col-xs-12">
+      <label for="introductionSpeech">Notes</label>
+      <textarea
+            type="text"
+            class="form-control text-justify"
+            name="introductionSpeech"
+            id="introductionSpeech"
+            rows="5"
+            formControlName="notes"
+            title="introduction du candidat"></textarea>
+    </div>
+
+    <div class='card-footer'>
+        <button class='btn btn-outline-primary'
+                style='width:80px'
+                (click)='onBack()'>
+          <i class='fa fa-chevron-left'></i> Back
+        </button>
+
+      </div>
+  </div>
+</form>
+

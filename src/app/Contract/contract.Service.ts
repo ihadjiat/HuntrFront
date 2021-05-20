@@ -1,22 +1,32 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { dependenciesFromGlobalMetadata } from "@angular/compiler/src/render3/r3_factory";
 import { Injectable } from "@angular/core";
-import { Observable, of, throwError } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
-import { IEnterprise } from "./Enterprise";
+import { Icontract } from "./contract";
 
 @Injectable({
   providedIn: 'root'
 })
-export class EnterpriseService {
-  private EnterpriseListUrl = 'https://localhost:44343/api/Enterprise';
-  private EnterpriseDetailsUrl = 'https://localhost:44343/api/Enterprise/';
-  private createEnterpriseUrl = 'https://localhost:44343/api/Enterprise/';
-  private DeleteEnterpriseUrl = 'https://localhost:44343/api/Enterprise/';
+export class contractService {
+  updatecontracts(p: any) {
+    throw new Error('Method not implemented.');
+  }
+  createcontracts(p: any) {
+    throw new Error('Method not implemented.');
+  }
+  private contractListUrl = 'https://localhost:44343/api/contract';
+  private contractDetailsUrl = 'https://localhost:44343/api/contract/';
+  private deletecontractUrl='https://localhost:44343/api/contract/';
+  private createcontractUrl='https://localhost:44343/api/contract/';
+
+
 
   constructor(private http: HttpClient) { }
 
-  getEnterprises(): Observable<IEnterprise[]> {
-    return this.http.get<IEnterprise[]>(this.EnterpriseListUrl).
+  getcontract(): Observable<Icontract[]>
+  {
+    return this.http.get<Icontract[]>(this.contractListUrl).
                                         pipe(
                                             tap(data =>
                                                 console.log('All: ', JSON.stringify(data))),
@@ -24,12 +34,13 @@ export class EnterpriseService {
                                         );
   }
 
-  getEnterprisesById(Id: string | number | null): Observable<IEnterprise> {
-    if (Id === 0 || Id === null) {
-      return of(this.initializeEnterprise());
+  getcontractById(Id: string | number | null): Observable<Icontract>
+  {
+    if(Id === null)
+    {
+      Id = 0;
     }
-
-    return this.http.get<IEnterprise>(this.EnterpriseDetailsUrl.concat(Id.toString())).
+    return this.http.get<Icontract>(this.contractDetailsUrl.concat(Id.toString())).
                                         pipe(
                                             tap(data =>
                                                 console.log('All: ', JSON.stringify(data))),
@@ -37,30 +48,32 @@ export class EnterpriseService {
                                         );
   }
 
-  initializeEnterprise(): IEnterprise {
+  initializecontract(): Icontract {
     return {
-      enterpriseId          :0,
-    name                  :"",
-    relation              :1,
-    publicName            :"",
-    adress1               :"",
-    adress2               :"",
-    city                  :"",
-    zipCode               :"",
-    creationYear          :new Date(),
-    staffSize             :0,
-    siret                 :"",
-    linkedIn              :"",
-    webSite               :"",
-    societeDotCom         :"",
-    introductionSpeech    :""
-    }
+            contractId : 0,
+            firstName : "",
+            lastName : "",
+            gender : 0,
+            linkedIn : "",
+            phoneNumber : "",
+            emailAdress : "",
+            zipCode : "",
+            city : "",
+            job : "",
+            diploma : 0,
+            diplomaObtentionDate : new Date(),
+            currentSalary : "",
+            expectedSalary : "",
+            availability : "",
+            notes : ""
+          }
   }
 
-  createEnterprises(enterprise:IEnterprise): Observable<IEnterprise> {
+
+  createcontract(contract:Icontract): Observable<Icontract> {
     const headers = new HttpHeaders({'Content-Type' : 'application/json'});
 
-    return this.http.post<IEnterprise>(this.createEnterpriseUrl, enterprise, {headers : headers}).
+    return this.http.post<Icontract>(this.createcontractUrl, contract, {headers : headers}).
                                         pipe(
                                             tap(data =>
                                                 console.log('All: ', JSON.stringify(data))),
@@ -69,12 +82,12 @@ export class EnterpriseService {
   }
 
 
-  updateEnterprises(enterprise:IEnterprise): Observable<IEnterprise>
+  updatecontract(contract:Icontract): Observable<Icontract>
   {
     const headers = new HttpHeaders({'Content-Type' : 'application/json'});
-    var url = this.EnterpriseDetailsUrl.concat( enterprise.enterpriseId.toString() );
+    var url = this.contractDetailsUrl.concat( contract.contractId.toString() );
 
-    return this.http.put<IEnterprise>(url, enterprise, {headers : headers}).
+    return this.http.put<Icontract>(url, contract, {headers : headers}).
                                         pipe(
                                             tap(data =>
                                                 console.log('All: ', JSON.stringify(data))),
@@ -84,11 +97,15 @@ export class EnterpriseService {
 
 
 
-  DeleteEnterprises(Id:number): Observable<IEnterprise> {
+  Deletecontracts(Id:number): Observable<Icontract>
+   {
     const headers = new HttpHeaders({'Content-Type' : 'application/json'});
 
-    return this.http.delete<IEnterprise>( this.DeleteEnterpriseUrl.concat( Id.toString() ) ) ;
+    return this.http.delete<Icontract>( this.deletecontractUrl.concat( Id.toString() ) ) ;
   }
+
+
+
 
   private handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure
