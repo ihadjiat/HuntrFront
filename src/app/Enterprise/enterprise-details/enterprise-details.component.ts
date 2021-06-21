@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IEnterprise } from '../Enterprise';
+import { Enterprise } from '../Enterprise';
 import { EnterpriseService } from '../Enterprise.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { EnterpriseService } from '../Enterprise.service';
 export class EnterpriseDetailsComponent implements OnInit, OnDestroy {
 
   sub!: Subscription;
-  Enterprise: IEnterprise | undefined;
+  Enterprise: Enterprise | undefined;
 
 
   constructor(private route : ActivatedRoute,
@@ -19,8 +19,6 @@ export class EnterpriseDetailsComponent implements OnInit, OnDestroy {
               private router : Router) { }
 
   ngOnInit(): void {
-
-    var enterprisesList : IEnterprise[]=[];
 
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.sub = this.EnterpriseService.

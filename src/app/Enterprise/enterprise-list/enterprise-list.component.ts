@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IEnterprise } from '../Enterprise';
+import { Enterprise } from '../Enterprise';
 import { EnterpriseService } from '../Enterprise.service';
 
 @Component({
@@ -15,18 +16,20 @@ export class EnterpriseListComponent implements OnInit, OnDestroy {
   sub!: Subscription;
   errorMessage : string ='';
 
-  
-  Enterprises:IEnterprise[]=[];
 
-  constructor(private EnterpriseService : EnterpriseService) { }
+  Enterprises:Enterprise[]=[];
 
-  ngOnInit(): void 
+  constructor(private EnterpriseService : EnterpriseService,
+              private router : Router)
+              { }
+
+  ngOnInit(): void
   {
     this.sub = this.EnterpriseService.
 						getEnterprises().
 						subscribe(
 						{
-							next: entreprise => 
+							next: entreprise =>
 							{
 								this.Enterprises = entreprise;
 							},
@@ -37,6 +40,30 @@ export class EnterpriseListComponent implements OnInit, OnDestroy {
 ngOnDestroy() : void
 {
   this.sub.unsubscribe();
+}
+
+OnNew():void
+{
+  this.router.navigate(['Entreprises/0/edit']);
+}
+
+OnEdit(id:number):void{
+  this.router.navigate(['Entreprises/1/edit']);
+}
+
+OnDelete(id:number):void{
+  if( confirm("Voulez vous vraiment supprimer cet élément ?") )
+  {
+    this.sub = this.EnterpriseService.
+                DeleteEnterprises(id).
+                        subscribe({
+                          next: e=>{this.ngOnInit()},
+                          error: err  =>{console.log( err);}
+                        });
+  }
+
+
+
 }
 
 }

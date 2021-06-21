@@ -1,8 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { stringify } from "@angular/compiler/src/util";
 import { Injectable } from "@angular/core";
-import { Observable, of, throwError } from "rxjs";
+import { Observable, of, scheduled, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
-import { IEnterprise } from "./Enterprise";
+import { Enterprise } from "./Enterprise";
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,11 @@ export class EnterpriseService {
   private createEnterpriseUrl = 'https://localhost:44343/api/Enterprise/';
   private DeleteEnterpriseUrl = 'https://localhost:44343/api/Enterprise/';
 
+
   constructor(private http: HttpClient) { }
 
-  getEnterprises(): Observable<IEnterprise[]> {
-    return this.http.get<IEnterprise[]>(this.EnterpriseListUrl).
+  getEnterprises(): Observable<Enterprise[]> {
+    return this.http.get<Enterprise[]>(this.EnterpriseListUrl).
                                         pipe(
                                             tap(data =>
                                                 console.log('All: ', JSON.stringify(data))),
@@ -24,12 +27,14 @@ export class EnterpriseService {
                                         );
   }
 
-  getEnterprisesById(Id: string | number | null): Observable<IEnterprise> {
-    if (Id === 0 || Id === null) {
+  getEnterprisesById(Id: string | number | null): Observable<Enterprise>
+  {
+    if (Id === 0 || Id === null)
+    {
       return of(this.initializeEnterprise());
     }
 
-    return this.http.get<IEnterprise>(this.EnterpriseDetailsUrl.concat(Id.toString())).
+    return this.http.get<Enterprise>(this.EnterpriseDetailsUrl.concat(Id.toString())).
                                         pipe(
                                             tap(data =>
                                                 console.log('All: ', JSON.stringify(data))),
@@ -37,30 +42,16 @@ export class EnterpriseService {
                                         );
   }
 
-  initializeEnterprise(): IEnterprise {
-    return {
-      enterpriseId          :0,
-    name                  :"",
-    relation              :1,
-    publicName            :"",
-    adress1               :"",
-    adress2               :"",
-    city                  :"",
-    zipCode               :"",
-    creationYear          :new Date(),
-    staffSize             :0,
-    siret                 :"",
-    linkedIn              :"",
-    webSite               :"",
-    societeDotCom         :"",
-    introductionSpeech    :""
-    }
+
+
+  initializeEnterprise(): Enterprise {
+    return new Enterprise();
   }
 
-  createEnterprises(enterprise:IEnterprise): Observable<IEnterprise> {
+  createEnterprises(enterprise:Enterprise): Observable<Enterprise> {
     const headers = new HttpHeaders({'Content-Type' : 'application/json'});
 
-    return this.http.post<IEnterprise>(this.createEnterpriseUrl, enterprise, {headers : headers}).
+    return this.http.post<Enterprise>(this.createEnterpriseUrl, enterprise, {headers : headers}).
                                         pipe(
                                             tap(data =>
                                                 console.log('All: ', JSON.stringify(data))),
@@ -69,12 +60,12 @@ export class EnterpriseService {
   }
 
 
-  updateEnterprises(enterprise:IEnterprise): Observable<IEnterprise>
+  updateEnterprises(enterprise:Enterprise): Observable<Enterprise>
   {
     const headers = new HttpHeaders({'Content-Type' : 'application/json'});
     var url = this.EnterpriseDetailsUrl.concat( enterprise.enterpriseId.toString() );
 
-    return this.http.put<IEnterprise>(url, enterprise, {headers : headers}).
+    return this.http.put<Enterprise>(url, enterprise, {headers : headers}).
                                         pipe(
                                             tap(data =>
                                                 console.log('All: ', JSON.stringify(data))),
@@ -84,10 +75,10 @@ export class EnterpriseService {
 
 
 
-  DeleteEnterprises(Id:number): Observable<IEnterprise> {
+  DeleteEnterprises(Id:number): Observable<Enterprise> {
     const headers = new HttpHeaders({'Content-Type' : 'application/json'});
 
-    return this.http.delete<IEnterprise>( this.DeleteEnterpriseUrl.concat( Id.toString() ) ) ;
+    return this.http.delete<Enterprise>( this.DeleteEnterpriseUrl.concat( Id.toString() ) ) ;
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

@@ -5,24 +5,26 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PersonListComponent } from './Person/person-list/person-list.component';
 import { EnterpriseModule } from './Enterprise/enterprise.module';
 import { CommonModule } from '@angular/common';
+import { EnterpriseListComponent } from './Enterprise/enterprise-list/enterprise-list.component';
+import { PersonModule } from './Person/person.module';
+import { contractModule } from './Contract/contract.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PersonListComponent,
   ],
   imports: [
     EnterpriseModule,
+    PersonModule,
+    contractModule,
     CommonModule,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: 'People', component : PersonListComponent},
-      { path : '**', redirectTo: ''}
+      { path : '**', component : EnterpriseListComponent},
     ])
   ],
   providers: [],

@@ -3,22 +3,28 @@ import { dependenciesFromGlobalMetadata } from "@angular/compiler/src/render3/r3
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
+import { Person } from "../Person/Person";
 import { Icontract } from "./contract";
 
 @Injectable({
   providedIn: 'root'
 })
-export class contractService {
-  updatecontracts(p: any) {
+export class contractService
+{
+  updatecontracts(p: any)
+  {
     throw new Error('Method not implemented.');
   }
-  createcontracts(p: any) {
+  createcontracts(p: any)
+  {
     throw new Error('Method not implemented.');
   }
+
   private contractListUrl = 'https://localhost:44343/api/contract';
   private contractDetailsUrl = 'https://localhost:44343/api/contract/';
   private deletecontractUrl='https://localhost:44343/api/contract/';
   private createcontractUrl='https://localhost:44343/api/contract/';
+  private contractListByPersonUrl = 'https://localhost:44343/api/contract/GetContractsByPersonId/';
 
 
 
@@ -48,24 +54,24 @@ export class contractService {
                                         );
   }
 
+  getContractsForPerson(Id : number) : Observable<Icontract[]>
+  {
+    return this.http.get<Icontract[]>(this.contractListByPersonUrl.concat(Id.toString())).
+                                          pipe(
+                                            tap(data =>
+                                              console.log('All : ', JSON.stringify(data))),
+                                              catchError(this.handleError)
+                                          );
+  }
+
   initializecontract(): Icontract {
     return {
             contractId : 0,
-            firstName : "",
-            lastName : "",
-            gender : 0,
-            linkedIn : "",
-            phoneNumber : "",
-            emailAdress : "",
-            zipCode : "",
-            city : "",
-            job : "",
-            diploma : 0,
-            diplomaObtentionDate : new Date(),
-            currentSalary : "",
-            expectedSalary : "",
-            availability : "",
-            notes : ""
+            name : "",
+            mission : "",
+            creationDate : new Date(),
+            limitDate : new Date(),
+            people : new Array(),
           }
   }
 

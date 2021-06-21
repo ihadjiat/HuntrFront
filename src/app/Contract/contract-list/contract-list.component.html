@@ -25,13 +25,12 @@
           <tbody>
             <tr *ngFor='let contract of People'
                 (click)="contractDetails(contract.contractId)">
-              <td>{{ contract.lastName }}</td>
-              <td>{{ contract.firstName }}</td>
-              <td>{{ contract.job }}</td>
+              <td>{{ contract.name }}</td>
+              <td>{{ contract.limitDate }}</td>
               <td>12</td>
               <td>
                 <button class='btn btn-outline-secondary'
-                      [routerLink]="['/contract', contract.contractId, 'edit']">
+                      [routerLink]="['/Contract', contract.contractId, 'edit']">
                   <i class='fa fa-edit'></i>
                 </button>
 

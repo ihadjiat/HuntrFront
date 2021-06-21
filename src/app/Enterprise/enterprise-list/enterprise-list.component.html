@@ -18,28 +18,40 @@
         <table class='table'>
           <thead>
             <tr>
-              <th>Id</th>
               <th>Nom</th>
-              <th>Localisation</th>
+              <th>Ville</th>
+              <th>Taille</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor='let enterprise of Enterprises'>
-              <td>{{enterprise.enterpriseId}}</td>
+              <td><a [routerLink]="['/Entreprises', enterprise.enterpriseId]">
+                {{ enterprise.publicName }}</a></td>
+              <td>{{ enterprise.city }}</td>
+              <td>{{enterprise.staffSize}}</td>
               <td>
-                <a [routerLink]="['/Entreprises', enterprise.enterpriseId]">
-                {{ enterprise.name }}</a></td>
-              <td>{{ enterprise.location }}</td>
+                <button class='btn btn-outline-secondary'
+                      [routerLink]="['/Entreprises', enterprise.enterpriseId, 'edit']">
+                  <i class='fa fa-edit'></i>
+                </button>
+
+                <button class='btn btn-outline-secondary'
+                        (click)='OnDelete(enterprise.enterpriseId)'>
+                  <i class='fa fa-trash'></i>
+                </button>
+              </td>
+
             </tr>
           </tbody>
-          <div class='card-footer'>
-            <button class='btn btn-outline-secondary'
-                    style='width:80px'
-                    onclick="">
-              <i class='fa fa-plus-circle'></i> New
-            </button>
-          </div>
+
         </table>
+        <div class='card-footer'>
+          <button class='btn btn-outline-secondary'
+                  style='width:80px'
+                  (click)='OnNew()'>
+            <i class='fa fa-plus-circle'></i> New
+          </button>
+        </div>
       </div>
     </div>
 

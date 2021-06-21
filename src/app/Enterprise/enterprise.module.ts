@@ -5,14 +5,14 @@ import { EnterpriseDetailsComponent } from './enterprise-details/enterprise-deta
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CreateComponent } from './create/create.component';
+import { EnterpriseEditComponent } from './enterprise-edit/enterprise-edit.component';
 
 
 @NgModule({
   declarations: [
     EnterpriseListComponent,
     EnterpriseDetailsComponent,
-    CreateComponent,
+    EnterpriseEditComponent,
 
   ],
   imports: [
@@ -23,7 +23,7 @@ import { CreateComponent } from './create/create.component';
     ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'Entreprises', component : EnterpriseListComponent},
-      { path : 'Entreprises/new', component : CreateComponent},
+      { path : 'Entreprises/:id/edit', component : EnterpriseEditComponent},
       { path : 'Entreprises/:id', component : EnterpriseDetailsComponent},
 
     ])

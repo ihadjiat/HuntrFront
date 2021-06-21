@@ -1,26 +1,81 @@
 <div class='card'>
     <div class="card-header">
-        {{Enterprise?.name}}
-    </div>
-</div>
-<div class="card-body" *ngIf="Enterprise" >
-    <div class='row' >
-        <div class='col-md-8'>
-          <div class='row'>
-            <div class='col-md-4'>Name:</div>
-            <div class='col-md-8'>{{Enterprise.name}}</div>
+        <h1>{{Enterprise?.publicName}}</h1>
+
+        <div class='row'>
+          <div class="col-md">
+            <a href="{{Enterprise?.webSite}}">Site web</a>
           </div>
-          <div class='row'>
-            <div class='col-md-4'>Localisation:</div>
-            <div class='col-md-8'>{{Enterprise.location}}</div>
+          <div class="col-md">
+            <a href="{{Enterprise?.linkedIn}}">LinkedIn</a>
+          </div>
+          <div class="col-md">
+            <a href="{{Enterprise?.societeDotCom}}">Société.com</a>
           </div>
         </div>
     </div>
+</div>
+<div class="card-body" *ngIf="Enterprise" >
+
+
+  <div class='row'>
+    <div class="col-md">
+      <label for="Name">NOM</label>
+      <input readonly=""  class="form-control" name="Name" id="Name" value="{{Enterprise.publicName}}" title="Nom publique de l'entreprise">
+    </div>
+    <div class="col-md">
+      <label for="Siret">SIRET</label>
+      <input readonly="" type="text" class="form-control" name="Siret" id="Siret" value="{{Enterprise.siret}}" title="n° SIRET de l'entreprise">
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="col-md">
+      <label for="Adress1">Adresse</label>
+      <input readonly=""  class="form-control" name="Adress1" id="Adress1" value="{{Enterprise.adress1}}" title="Adresse de l'entreprise">
+    </div>
+    <div class="col-md">
+      <label for="Adress2">Complément d'adresse</label>
+      <input readonly="" type="text" class="form-control" name="Adress2" id="Adress2" value="{{Enterprise.adress2}}" title="Complément d\'adresse pour l\'entreprise">
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="col-md">
+      <label for="ZipCode">Code postal</label>
+      <input readonly=""  class="form-control" name="ZipCode" id="ZipCode" value="{{Enterprise.zipCode}}" title="Code postal de l'entreprise">
+    </div>
+    <div class="col-md">
+      <label for="City">Ville</label>
+      <input readonly=""  class="form-control" name="City" id="City" value="{{Enterprise.city}}" title="Ville de l'entreprise">
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="col-md">
+      <label for="staffSize">Nombre de salariés</label>
+      <input readonly=""  class="form-control" name="staffSize" id="staffSize" value="{{Enterprise.staffSize}}" title="Taille de l'entreprise">
+    </div>
+    <div class="col-md">
+      <label for="creationYear">Année de création</label>
+      <input readonly="" type="text" class="form-control" name="creationYear" id="creationYear" value="{{Enterprise.creationYear}}" title="Date de création de l'entreprise">
+    </div>
+  </div>
+
+  <div class="col-xs-12">
+    <label for="introductionSpeech">Speech d'introduction</label>
+    <textarea readonly="" type="text" class="form-control text-justify" name="introductionSpeech" id="introductionSpeech" rows="5" value="{{Enterprise.introductionSpeech}}" title="introduction de l'entreprise"></textarea>
+</div>
+
     <div class='card-footer'>
-        <button class='btn btn-outline-secondary'
+        <button class='btn btn-outline-primary'
                 style='width:80px'
                 (click)='onBack()'>
           <i class='fa fa-chevron-left'></i> Back
+        </button>
+        <button class='btn btn-outline-secondary pull-right'
+                      [routerLink]="['/Entreprises', Enterprise.enterpriseId, 'edit']">
+                  <i class='fa fa-edit'></i> Edit
         </button>
       </div>
 </div>

@@ -2,26 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IPerson } from '../contract';
-import { PersonService } from '../contract.Service';
+import { Enterprise } from 'src/app/Enterprise/Enterprise';
+import { EnterpriseService } from 'src/app/Enterprise/Enterprise.service';
+import { Person } from '../Person';
+import { PersonService } from '../Person.Service';
 
 @Component({
   selector: 'pm-person-edit',
   templateUrl: './person-edit.component.html',
   styleUrls: ['./person-edit.component.css']
 })
+
+
+
 export class PersonEditComponent implements OnInit
 {
 
-  person : IPerson|undefined;
+  person : Person|undefined;
   personId:number = 0;
   personForm !: FormGroup;
   errorMessage : string = "";
   pageTitle : string ="";
+  EnterpriseList:Enterprise[]|undefined;
   private sub?:Subscription;
 
   constructor(private fb : FormBuilder,
               private personService : PersonService,
+              private enterpriseService : EnterpriseService,
               private route : ActivatedRoute,
               private router : Router )
      { }
@@ -39,10 +46,11 @@ export class PersonEditComponent implements OnInit
       city : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       job : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       diploma : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      diplomaObtentionDate : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      diplomaObtentionYear : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       currentSalary : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       expectedSalary : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       availability : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      entrepriseId : [ '',[ ] ],
       notes : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
     });
 
@@ -60,21 +68,25 @@ export class PersonEditComponent implements OnInit
       }
     );
 
-  }
+    this.sub = this.enterpriseService.getEnterprises().subscribe({
+                      next: temp  => this.EnterpriseList = temp,
+                      error: err => this.errorMessage = err
+                    })
 
+  }
 
   getPerson(id: string | number | null)
   {
     this.sub =this.personService.getPersonById(id)
       .subscribe({
-        next: (person : IPerson) => this.displayPerson(person),
+        next: (person : Person) => this.displayPerson(person),
         error: err => this.errorMessage = err
       });
 
   }
 
 
-  displayPerson(person: IPerson): void
+  displayPerson(person: Person): void
   {
     if (this.personForm)
     {
@@ -106,10 +118,11 @@ export class PersonEditComponent implements OnInit
       city : this.person.city,
       job : this.person.job,
       diploma : this.person.diploma,
-      diplomaObtentionDate :this.person.diplomaObtentionDate,
+      diplomaObtentionYear :this.person.diplomaObtentionYear,
       currentSalary : this.person.currentSalary,
       expectedSalary : this.person.expectedSalary,
       availability : this.person.availability,
+      entrepriseId : this.person.entrepriseId,
       notes : this.person.notes,
     });
   }
@@ -169,3 +182,10 @@ export class PersonEditComponent implements OnInit
 
 
 }
+
+
+export class enterpriseName
+{
+  id:number=0;
+  name:string="";
+};

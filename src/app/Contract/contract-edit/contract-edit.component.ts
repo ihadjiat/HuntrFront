@@ -29,21 +29,10 @@ export class contractEditComponent implements OnInit
   ngOnInit(): void
   {
     this.contractForm = this.fb.group({
-      firstName : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      lastName :[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      gender : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      linkedIn : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      phoneNumber : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      emailAdress : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      zipCode : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      city : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      job : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      diploma : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      diplomaObtentionDate : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      currentSalary : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      expectedSalary : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      availability : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      notes : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      name : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      creationDate : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      limitDate : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      mission : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
     });
 
     // Read the product Id from the route parameter
@@ -55,7 +44,7 @@ export class contractEditComponent implements OnInit
 
         if ( id === "0" )
         {
-          this.pageTitle = `Créer une entreprise`;
+          this.pageTitle = `Créer un mandat`;
         }
       }
     );
@@ -90,27 +79,17 @@ export class contractEditComponent implements OnInit
     else
     {
       this.contractId = this.contract.contractId;
-      this.pageTitle = `Modifier le profile de ${this.contract?.firstName} ${this.contract?.lastName}`;
+      this.pageTitle = `Modifier le mandat ${this.contract?.name} `;
     }
 
 
     // Update the data on the form
     this.contractForm.patchValue({
-      firstName : this.contract.firstName,
-      lastName :this.contract.lastName,
-      gender : this.contract.gender,
-      linkedIn : this.contract.linkedIn,
-      phoneNumber : this.contract.phoneNumber,
-      emailAdress : this.contract.emailAdress,
-      zipCode : this.contract.zipCode,
-      city : this.contract.city,
-      job : this.contract.job,
-      diploma : this.contract.diploma,
-      diplomaObtentionDate :this.contract.diplomaObtentionDate,
-      currentSalary : this.contract.currentSalary,
-      expectedSalary : this.contract.expectedSalary,
-      availability : this.contract.availability,
-      notes : this.contract.notes,
+      name: this.contract.name,
+      creationDate: this.contract.creationDate,
+      limitDate: this.contract.limitDate,
+      mission: this.contract.mission,
+
     });
   }
 

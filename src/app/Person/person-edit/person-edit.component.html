@@ -1,0 +1,214 @@
+<div class='card'>
+  <form novalidate (ngSubmit)="save()" [formGroup]="personForm">
+    <div class="card-header">
+        <h1>
+          <div class='row'>
+          <div class="col-md">
+            <label for="firstName">Prénom</label>
+            <input
+                  class="form-control"
+                  id="firstName"
+                  type="text"
+                  placeholder="Courriel du candidat"
+                  formControlName="firstName"
+                  title="Prénom du candidat">
+            <span class="invalid-feedback">
+              <span *ngIf="personForm.get('firstName')?.errors?.required">
+                Veuillez saisir une adresse courriel pour le candidat
+              </span>
+              <span *ngIf="personForm.get('firstName')?.errors?.minlength">
+                Le courriel n'est pas au bon format
+              </span>
+            </span>
+          </div>
+
+          <div class="col-md">
+            <label for="lastName">Nom</label>
+            <input
+                  class="form-control"
+                  name="lastName"
+                  id="lastName"
+                  formControlName="lastName"
+                  title="Nom de famille du candidat">
+            <span class="invalid-feedback">
+              <span *ngIf="personForm.get('lastName')?.errors?.required">
+                Veuillez saisir une adresse courriel pour le candidat
+              </span>
+              <span *ngIf="personForm.get('lastName')?.errors?.minlength">
+                Le courriel n'est pas au bon format
+              </span>
+            </span>
+          </div>
+          </div>
+         </h1>
+        <h4>
+          <div class="col-md">
+            <label for="job">Emploi</label>
+            <input
+                  class="form-control"
+                  name="job"
+                  id="job"
+                  formControlName="job"
+                  title="Emploi du candidat">
+            <span class="invalid-feedback">
+              <span *ngIf="personForm.get('job')?.errors?.required">
+                Veuillez saisir une adresse courriel pour le candidat
+              </span>
+              <span *ngIf="personForm.get('job')?.errors?.minlength">
+                Le courriel n'est pas au bon format
+              </span>
+            </span>
+          </div>
+        </h4>
+    </div>
+
+    <div class="card-body" *ngIf="person" >
+
+      <div class='row'>
+
+        <div class="col-md" >
+          <label for="EntrepriseListId">Entreprise</label>
+          <select formControlName="entrepriseId" >
+            <option [value] = 1> - </option>
+
+            <option *ngFor="let enterprise of EnterpriseList" [value]="enterprise.enterpriseId">{{enterprise.publicName}}</option>
+          </select>
+        </div>
+
+        <div class="col-md">
+          <label for="Adress1">Sexe</label>
+          <input readonly=""  class="form-control" name="gender" id="gender" value="{{person.gender.toString()}}" title="Sexe du candidat">
+        </div>
+
+
+      </div>
+
+      <div class='row'>
+
+      <div class="col-md">
+        <label for="emailAdressId">Courriel</label>
+        <input
+              class="form-control"
+              id="emailAdressId"
+              type="text"
+              placeholder="Courriel du candidat"
+              formControlName="emailAdress"
+              title="Courriel du candidat">
+        <span class="invalid-feedback">
+          <span *ngIf="personForm.get('emailAdress')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="personForm.get('emailAdress')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md">
+        <label for="phoneNumber">Téléphone</label>
+        <input
+              class="form-control"
+              name="phoneNumber"
+              id="phoneNumber"
+              formControlName="phoneNumber"
+              title="Numéro de téléphone du candidat">
+        <span class="invalid-feedback">
+          <span *ngIf="personForm.get('phoneNumber')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="personForm.get('phoneNumber')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md">
+        <label for="linkedIn">LinkedIn</label>
+        <input
+              class="form-control"
+              name="linkedIn"
+              id="linkedIn"
+              formControlName="linkedIn"
+              [ngClass]="{'is-invalid': (personForm.get('linkedIn')?.touched || personForm.get('linkedIn')?.dirty) && !personForm.get('linkedIn')?.valid }"
+              title="Lien vers le profil LinkedIn du candidat">
+        <span class="invalid-feedback">
+          <span *ngIf="personForm.get('linkedIn')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="personForm.get('linkedIn')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+    </div>
+
+
+
+    <div class='row'>
+
+      <div class="col-md">
+        <label for="city">Ville</label>
+        <input
+                class="form-control"
+                name="city"
+                id="city"
+                formControlName="city"
+                [ngClass]="{'is-invalid': (personForm.get('city')?.touched || personForm.get('city')?.dirty) && !personForm.get('city')?.valid }">
+        <span class="invalid-feedback">
+          <span *ngIf="personForm.get('city')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="personForm.get('city')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md">
+        <label for="zipCode">Code postal</label>
+        <input
+                type="text"
+                class="form-control"
+                name="zipCode"
+                id="zipCode"
+                value="{{person.zipCode}}"
+                formControlName="zipCode"
+                title="Code postal du candidat">
+        <span class="invalid-feedback">
+          <span *ngIf="personForm.get('zipCode')?.errors?.required">
+            Veuillez saisir une adresse courriel pour le candidat
+          </span>
+          <span *ngIf="personForm.get('zipCode')?.errors?.minlength">
+            Le courriel n'est pas au bon format
+          </span>
+        </span>
+      </div>
+
+    </div>
+
+
+
+    <div class="col-xs-12">
+      <label for="introductionSpeech">Notes</label>
+      <textarea
+            type="text"
+            class="form-control text-justify"
+            name="introductionSpeech"
+            id="introductionSpeech"
+            rows="5"
+            formControlName="notes"
+            title="introduction du candidat"></textarea>
+    </div>
+
+    <div class='card-footer'>
+        <button class='btn btn-outline-primary'
+                style='width:80px'
+                (click)='onBack()'>
+          <i class='fa fa-chevron-left'></i> Back
+        </button>
+
+      </div>
+  </div>
+</form>
+

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    {{pageTitle}} :
+    <h1>{{pageTitle}} :</h1>
   </div>
 
   <div class="card-body">
@@ -118,46 +118,46 @@
 
         <div class="col-md">
 
-          <label class="col-md col-form-label" for="adress1Id">Adresse de l'entreprise</label>
+          <!--<label class="col-md col-form-label" for="zipCodeId">Code postal</label>
           <div class="form-group row mb-2">
             <div class="col-md">
               <input
                         class="form-control"
-                        id="adress1Id"
+                        id="zipCodeId"
                         type="text"
-                        placeholder="Adresse de l'entreprise"
-                        formControlName="adress1"
-                        [ngClass]="{'is-invalid': (enterpriseForm.get('adress1')?.touched || enterpriseForm.get('adress1')?.dirty) && !enterpriseForm.get('adress1')?.valid }" />
+                        placeholder="Code postal de l'entreprise"
+                        formControlName="zipCode"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('zipCode')?.touched || enterpriseForm.get('zipcode')?.dirty) && !enterpriseForm.get('zipcode')?.valid }" />
               <span class="invalid-feedback">
-                <span *ngIf="enterpriseForm.get('adress1')?.errors?.required">
+                <span *ngIf="enterpriseForm.get('zipcode')?.errors?.required">
                   Veuillez saisir une adresse d'entreprise
                 </span>
-                <span *ngIf="enterpriseForm.get('adress1')?.errors?.minlength">
+                <span *ngIf="enterpriseForm.get('zipcode')?.errors?.minlength">
                   L'adresse doit comporter au moins 3 caractères
                 </span>
               </span>
             </div>
-          </div>
+          </div>-->
 
         </div>
 
         <div class="col-md">
 
-          <label class="col-md col-form-label" for="adress2Id">Complément d'adresse</label>
+          <label class="col-md col-form-label" for="cityId">Ville</label>
           <div class="form-group row mb-2">
             <div class="col-md">
               <input
                         class="form-control"
-                        id="adress2Id"
+                        id="cityId"
                         type="text"
-                        placeholder="Complément d'adresse"
-                        formControlName="adress2"
-                        [ngClass]="{'is-invalid': (enterpriseForm.get('adress2')?.touched || enterpriseForm.get('adress2')?.dirty) && !enterpriseForm.get('adress2')?.valid }" />
+                        placeholder="Ville"
+                        formControlName="city"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('city')?.touched || enterpriseForm.get('city')?.dirty) && !enterpriseForm.get('city')?.valid }" />
               <span class="invalid-feedback">
-                <span *ngIf="enterpriseForm.get('adress2')?.errors?.required">
+                <span *ngIf="enterpriseForm.get('city')?.errors?.required">
                   Veuillez saisir un nom d'entreprise
                 </span>
-                <span *ngIf="enterpriseForm.get('adress2')?.errors?.minlength">
+                <span *ngIf="enterpriseForm.get('city')?.errors?.minlength">
                   Le nom doit comporter au moins 3 caractères
                 </span>
               </span>
@@ -168,70 +168,168 @@
 
       </div>
 
-      
-      <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label" for="nameId">First Name</label>
-          <div class="col-md-8">
+      <div class='row'>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="staffSizeId">Nombre de salariés</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
               <input
-                    class="form-control"
-                    id="nameId"
-                    type="text"
-                    placeholder="Nom de l'entreprise (Obligatoire!)"
-                    formControlName="name"
-                    [ngClass]="{'is-invalid': (enterpriseForm.get('name')?.touched || enterpriseForm.get('name')?.dirty) && !enterpriseForm.get('name')?.valid }" />
-          <span class="invalid-feedback">
-            <span *ngIf="enterpriseForm.get('name')?.errors?.required">
-              Veuillez saisir un nom d'entreprise
-            </span>
-            <span *ngIf="enterpriseForm.get('name')?.errors?.minlength">
-              Le nom doit comporter au moins 3 caractères
-            </span>
-          </span>
+                        class="form-control"
+                        id="staffSizeId"
+                        type="text"
+                        placeholder="Taille de l'entreprise"
+                        formControlName="staffSize"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('staffSize')?.touched || enterpriseForm.get('staffSize')?.dirty) && !enterpriseForm.get('staffSize')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('staffSize')?.errors?.required">
+                  Veuillez saisir une adresse d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('staffSize')?.errors?.minlength">
+                  L'adresse doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="creationYearId">Année de création</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="creationYearId"
+                        type="date"
+                        formControlName="creationYear"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('creationYear')?.touched || enterpriseForm.get('creationYear')?.dirty) && !enterpriseForm.get('creationYear')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('creationYear')?.errors?.required">
+                  Veuillez saisir un nom d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('creationYear')?.errors?.minlength">
+                  Le nom doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class='row'>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="societeDotComId">société.com</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="societeDotComId"
+                        type="text"
+                        placeholder="lien vers société.com"
+                        formControlName="societeDotCom"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('societeDotCom')?.touched || enterpriseForm.get('societeDotCom')?.dirty) && !enterpriseForm.get('societeDotCom')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('societeDotCom')?.errors?.required">
+                  Veuillez saisir une adresse d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('societeDotCom')?.errors?.minlength">
+                  L'adresse doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="linkedInId">LinkedIn</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="linkedInId"
+                        type="text"
+                        placeholder="lien vers Linked in"
+                        formControlName="linkedIn"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('linkedIn')?.touched || enterpriseForm.get('linkedIn')?.dirty) && !enterpriseForm.get('linkedIn')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('linkedIn')?.errors?.required">
+                  Veuillez saisir une adresse d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('linkedIn')?.errors?.minlength">
+                  L'adresse doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md">
+
+          <label class="col-md col-form-label" for="webSiteId">Site Web</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+              <input
+                        class="form-control"
+                        id="webSiteId"
+                        type="text"
+                        placeholder="Site web de l'entreprise"
+                        formControlName="webSite"
+                        [ngClass]="{'is-invalid': (enterpriseForm.get('webSite')?.touched || enterpriseForm.get('webSite')?.dirty) && !enterpriseForm.get('webSite')?.valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="enterpriseForm.get('webSite')?.errors?.required">
+                  Veuillez saisir une adresse d'entreprise
+                </span>
+                <span *ngIf="enterpriseForm.get('webSite')?.errors?.minlength">
+                  L'adresse doit comporter au moins 3 caractères
+                </span>
+              </span>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label" for="LocationId">Localisation</label>
-        <div class="col-md-8">
-            <input
-                  class="form-control"
-                  id="LocationId"
-                  type="text"
-                  placeholder="Ville du siège social (Obligatoire!)"
-                  formControlName="location"
-                  [ngClass]="{'is-invalid': (enterpriseForm.get('location')?.touched || enterpriseForm.get('location')?.dirty) && !enterpriseForm.get('location')?.valid }" />
-        <span class="invalid-feedback">
-          <span *ngIf="enterpriseForm.get('location')?.errors?.required">
-            Veuillez saisir un ville de résidence pour l'entreprise
-          </span>
-          <span *ngIf="enterpriseForm.get('location')?.errors?.minlength">
-            Le ville doit comporter au moins 3 caractères
-          </span>
-        </span>
-      </div>
-    </div>
 
-      <div class="form-group row mb-2">
-        <div class="offset-md-2 col-md-4">
-          <button class="btn btn-primary mr-3"
-                  type="submit"
-                  style="width:80px"
-                  [title]="enterpriseForm.valid ? 'Sauvegarde de vos données' : 'Veuillez corriger les erreurs du formulaire '"
-                  [disabled]="!enterpriseForm.valid">
-            Save
-          </button>
 
-        </div>
-        <div class="offset-md-5 col-md-4">
-          <button class="btn btn-primary mr-4"
-                  (click)='OnCancel()'
-                  style="width:80px"
-                  >
-            Annuler
-          </button>
-
+      <div class='row'>
+        <div class="col-md">
+          <label class="col-md col-form-label" for="introductionSpeechId">Année de création</label>
+          <div class="form-group row mb-2">
+            <div class="col-md">
+                <textarea
+                            class="form-control"
+                            id="introductionSpeechId"
+                            type="text"
+                            rows="5"
+                            formControlName="introductionSpeech"></textarea>
+            </div>
+          </div>
         </div>
       </div>
 
 
+      <div class='card-footer'>
+        <button class='btn btn-outline-secondary '
+                    [routerLink]="['/Entreprises', enterpriseId]">
+                <i class='fa fa-window-close'>Annuler</i>
+        </button>
+        <button class="btn btn-outline-primary  pull-right"
+                type="submit"
+                style="width:80px"
+                [title]="enterpriseForm.valid ? 'Sauvegarde de vos données' : 'Veuillez corriger les erreurs du formulaire '"
+                >
+                <i class='fa fa-save'>Save</i>
+        </button>
+
+      </div>
     </form>

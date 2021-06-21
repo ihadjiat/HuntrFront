@@ -1,0 +1,102 @@
+<div class='card'>
+  <div class="card-header">
+      <h1>{{person?.firstName}} {{person?.lastName}}</h1>
+      <h4>{{person?.job}}</h4>
+  </div>
+
+  <div class="card-body" *ngIf="person" >
+
+    <div class='row'>
+      <div class="col-md">
+        <label for="Adress1">Sexe</label>
+        <input readonly=""  class="form-control" name="gender" id="gender" value="{{person.gender}}" title="Sexe du candidat">
+      </div>
+    </div>
+    <div class='row'>
+      <div class="col-md">
+        <label for="jobId">Emploi</label>
+        <input readonly=""  class="form-control" name="jobId" id="JobId" value="{{person.job}}" title="Emploi du candidat">
+      </div>
+      <div class="col-md">
+        <label for="enterpriseId">Employeur</label>
+        <input readonly=""  class="form-control" name="enterpriseId" id="enterpriseId" value="{{person.entrepriseName}}" title="Employeur du candidat">
+      </div>
+      <div class="col-md">
+        <label for="experienceId">Nombre d'années d'experience</label>
+        <input readonly=""  class="form-control" name="experienceId" id="experienceId" value="{{person.experience}}" title="Nombre d'années d'experience du candidat">
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class="col-md">
+        <label for="emailAdress">Courriel</label>
+        <input readonly=""  class="form-control" name="emailAdress" id="emailAdress" value="{{person.emailAdress}}" title="Adresse du candidat">
+      </div>
+      <div class="col-md">
+        <label for="phoneNumber">Téléphone</label>
+        <input readonly=""  class="form-control" name="phoneNumber" id="phoneNumber" value="{{person.phoneNumber}}" title="Numéro de téléphone du candidat">
+      </div>
+      <div class="col-md">
+        <label for="linkedIn">LinkedIn</label>
+        <input readonly=""  class="form-control" name="linkedIn" id="linkedIn" value="{{person.linkedIn}}" title="Lien vers le profil LinkedIn du candidat">
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class="col-md">
+        <label for="city">Ville</label>
+        <input readonly=""  class="form-control" name="city" id="city" value="{{person.city}}" title="Ville du candidat">
+      </div>
+      <div class="col-md">
+        <label for="zipCode">Code postal</label>
+        <input readonly="" type="text" class="form-control" name="zipCode" id="zipCode" value="{{person.zipCode}}" title="Code postal du candidat">
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+      <label for="introductionSpeech">Notes</label>
+      <textarea readonly="" type="text" class="form-control text-justify" name="introductionSpeech" id="introductionSpeech" rows="5" value="{{person.notes}}" title="introduction du candidat"></textarea>
+    </div>
+
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Emploi</th>
+            <th>Expérience</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let contract of person.contracts'
+              (click)="contractDetails(contract.contractId)">
+            <td>{{ contract.name }}</td>
+            <td>{{ contract.limitDate }}</td>
+            <td>12</td>
+            <td>
+              <button class='btn btn-outline-secondary'
+                    [routerLink]="['/Contract', contract.contractId, 'edit']">
+                <i class='fa fa-edit'></i>
+              </button>
+
+              <button class='btn btn-outline-secondary'>
+                <i class='fa fa-trash'></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class='card-footer'>
+      <button class='btn btn-outline-primary'
+              style='width:80px'
+              (click)='onBack()'>
+        <i class='fa fa-chevron-left'></i> Back
+      </button>
+
+  </div>
+</div>
+
