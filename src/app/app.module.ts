@@ -31,3 +31,5 @@ import { contractModule } from './Contract/contract.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

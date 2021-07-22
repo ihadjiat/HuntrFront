@@ -67,13 +67,13 @@ export class PersonDetailsComponent implements OnInit {
     );
   }
 
-  contractDetails(id : number):void
+  contractDetails( id : number ):void
   {
-    this.router.navigate(['Contract', id]);
+    this.router.navigate( [ 'Contract', id ] );
   }
 
   onBack():void{
-    this.router.navigate(['Person']);
+    this.router.navigate( [ 'Person' ] );
   }
 
 }

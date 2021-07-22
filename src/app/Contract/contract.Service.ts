@@ -1,9 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
-import { dependenciesFromGlobalMetadata } from "@angular/compiler/src/render3/r3_factory";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
-import { Person } from "../Person/Person";
+import { server } from "../Utils";
 import { Icontract } from "./contract";
 
 @Injectable({
@@ -20,11 +19,12 @@ export class contractService
     throw new Error('Method not implemented.');
   }
 
-  private contractListUrl = 'https://localhost:44343/api/contract';
-  private contractDetailsUrl = 'https://localhost:44343/api/contract/';
-  private deletecontractUrl='https://localhost:44343/api/contract/';
-  private createcontractUrl='https://localhost:44343/api/contract/';
-  private contractListByPersonUrl = 'https://localhost:44343/api/contract/GetContractsByPersonId/';
+  private contractUrl = server.concat('contract/');
+  private contractListUrl = this.contractUrl.concat('');
+  private contractDetailsUrl = this.contractUrl.concat('');
+  private deletecontractUrl=this.contractUrl.concat('');
+  private createcontractUrl=this.contractUrl.concat('');
+  private contractListByPersonUrl = this.contractUrl.concat('GetContractsByPersonId/');
 
 
 

@@ -20,6 +20,7 @@ export class contractListComponent implements OnInit {
               private router : Router  )
                  { }
 
+
   ngOnInit(): void {
     this.sub = this.contractService.
 						getcontract().
@@ -32,6 +33,12 @@ export class contractListComponent implements OnInit {
 							error: err  =>{console.log( err);}
 						});
   }
+
+  OnNew():void
+{
+  this.router.navigate(['Contract/0/edit']);
+}
+
 
   contractDetails(id : number):void
   {

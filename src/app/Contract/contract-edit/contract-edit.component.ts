@@ -38,11 +38,11 @@ export class contractEditComponent implements OnInit
     // Read the product Id from the route parameter
     this.sub = this.route.paramMap.subscribe(
       params => {
-        const id = params.get('id') ? params.get('id') : 0;
+        const id = params.get('id') ? Number( params.get('id') ): 0;
 
         this.getcontract(id);
 
-        if ( id === "0" )
+        if ( id === 0 )
         {
           this.pageTitle = `Créer un mandat`;
         }

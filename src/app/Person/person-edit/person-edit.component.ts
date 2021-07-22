@@ -39,7 +39,7 @@ export class PersonEditComponent implements OnInit
       firstName : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       lastName :[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       gender : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      linkedIn : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      linkedIn : [ '', [ Validators.minLength( 3 ) ] ],
       phoneNumber : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       emailAdress : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       zipCode : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
@@ -47,21 +47,21 @@ export class PersonEditComponent implements OnInit
       job : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       diploma : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
       diplomaObtentionYear : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      currentSalary : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      expectedSalary : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      availability : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      currentSalary : [ '',[  Validators.minLength( 3 ) ] ],
+      expectedSalary : [ '',[  Validators.minLength( 3 ) ] ],
+      availability : [ '',[  Validators.minLength( 3 ) ] ],
       entrepriseId : [ '',[ ] ],
-      notes : [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      notes : [ '',[  Validators.minLength( 3 ) ] ],
     });
 
     // Read the product Id from the route parameter
     this.sub = this.route.paramMap.subscribe(
       params => {
-        const id = params.get('id') ? params.get('id') : 0;
+        let id = params.get('id') ? Number( params.get('id') ) : 0;
 
         this.getPerson(id);
 
-        if ( id === "0" )
+        if ( id === 0 )
         {
           this.pageTitle = `Créer une entreprise`;
         }
@@ -75,7 +75,7 @@ export class PersonEditComponent implements OnInit
 
   }
 
-  getPerson(id: string | number | null)
+  getPerson(id:  number | null)
   {
     this.sub =this.personService.getPersonById(id)
       .subscribe({
@@ -84,6 +84,7 @@ export class PersonEditComponent implements OnInit
       });
 
   }
+
 
 
   displayPerson(person: Person): void

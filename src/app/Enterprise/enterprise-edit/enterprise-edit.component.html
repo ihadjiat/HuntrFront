@@ -40,7 +40,7 @@
               <input
                 class="form-control"
                 id="siretId"
-                type="text"
+                type="number"
                 placeholder="Numéro SIRET (Obligatoire!)"
                 formControlName="siret"
                 [ngClass]="{'is-invalid': (enterpriseForm.get('siret')?.touched || enterpriseForm.get('siret')?.dirty) && !enterpriseForm.get('siret')?.valid }" />
@@ -49,6 +49,9 @@
                   Veuillez saisir un nom numéro SIRET
                 </span>
                 <span *ngIf="enterpriseForm.get('siret')?.errors?.minlength">
+                  Le siret doit être composé de 14 chiffres
+                </span>
+                <span *ngIf="enterpriseForm.get('siret')?.errors?.maxlength">
                   Le siret doit être composé de 14 chiffres
                 </span>
               </span>
@@ -100,11 +103,8 @@
                         formControlName="adress2"
                         [ngClass]="{'is-invalid': (enterpriseForm.get('adress2')?.touched || enterpriseForm.get('adress2')?.dirty) && !enterpriseForm.get('adress2')?.valid }" />
               <span class="invalid-feedback">
-                <span *ngIf="enterpriseForm.get('adress2')?.errors?.required">
-                  Veuillez saisir un nom d'entreprise
-                </span>
                 <span *ngIf="enterpriseForm.get('adress2')?.errors?.minlength">
-                  Le nom doit comporter au moins 3 caractères
+                  Le complément d'adresse doit comporter au moins 3 caractères
                 </span>
               </span>
             </div>
@@ -118,26 +118,29 @@
 
         <div class="col-md">
 
-          <!--<label class="col-md col-form-label" for="zipCodeId">Code postal</label>
+          <label class="col-md col-form-label" for="zipCodeId">Code postal</label>
           <div class="form-group row mb-2">
             <div class="col-md">
               <input
                         class="form-control"
                         id="zipCodeId"
-                        type="text"
+                        type="number"
                         placeholder="Code postal de l'entreprise"
                         formControlName="zipCode"
                         [ngClass]="{'is-invalid': (enterpriseForm.get('zipCode')?.touched || enterpriseForm.get('zipcode')?.dirty) && !enterpriseForm.get('zipcode')?.valid }" />
               <span class="invalid-feedback">
                 <span *ngIf="enterpriseForm.get('zipcode')?.errors?.required">
-                  Veuillez saisir une adresse d'entreprise
+                  Veuillez saisir un code postal
                 </span>
                 <span *ngIf="enterpriseForm.get('zipcode')?.errors?.minlength">
-                  L'adresse doit comporter au moins 3 caractères
+                  L'adresse doit 5 chiffres
+                </span>
+                <span *ngIf="enterpriseForm.get('zipcode')?.errors?.maxlength">
+                  L'adresse doit 5 chiffres
                 </span>
               </span>
             </div>
-          </div>-->
+          </div>
 
         </div>
 
@@ -155,10 +158,10 @@
                         [ngClass]="{'is-invalid': (enterpriseForm.get('city')?.touched || enterpriseForm.get('city')?.dirty) && !enterpriseForm.get('city')?.valid }" />
               <span class="invalid-feedback">
                 <span *ngIf="enterpriseForm.get('city')?.errors?.required">
-                  Veuillez saisir un nom d'entreprise
+                  Veuillez saisir une ville
                 </span>
                 <span *ngIf="enterpriseForm.get('city')?.errors?.minlength">
-                  Le nom doit comporter au moins 3 caractères
+                  Le nom de la ville doit comporter au moins 1 caractère
                 </span>
               </span>
             </div>
@@ -178,17 +181,15 @@
               <input
                         class="form-control"
                         id="staffSizeId"
-                        type="text"
+                        type="number"
                         placeholder="Taille de l'entreprise"
                         formControlName="staffSize"
                         [ngClass]="{'is-invalid': (enterpriseForm.get('staffSize')?.touched || enterpriseForm.get('staffSize')?.dirty) && !enterpriseForm.get('staffSize')?.valid }" />
               <span class="invalid-feedback">
                 <span *ngIf="enterpriseForm.get('staffSize')?.errors?.required">
-                  Veuillez saisir une adresse d'entreprise
+                  Veuillez saisir un nombre de salarié
                 </span>
-                <span *ngIf="enterpriseForm.get('staffSize')?.errors?.minlength">
-                  L'adresse doit comporter au moins 3 caractères
-                </span>
+
               </span>
             </div>
           </div>
@@ -203,15 +204,19 @@
               <input
                         class="form-control"
                         id="creationYearId"
-                        type="date"
+                        type="number"
                         formControlName="creationYear"
                         [ngClass]="{'is-invalid': (enterpriseForm.get('creationYear')?.touched || enterpriseForm.get('creationYear')?.dirty) && !enterpriseForm.get('creationYear')?.valid }" />
               <span class="invalid-feedback">
                 <span *ngIf="enterpriseForm.get('creationYear')?.errors?.required">
-                  Veuillez saisir un nom d'entreprise
+                  Veuillez saisir une année de création
                 </span>
-                <span *ngIf="enterpriseForm.get('creationYear')?.errors?.minlength">
-                  Le nom doit comporter au moins 3 caractères
+                <!--TODO : Mettre la date max en dynamique-->
+                <span *ngIf="enterpriseForm.get('creationYear')?.errors?.min">
+                  L'année de création doit être compris entre 1950 et 2021
+                </span>
+                <span *ngIf="enterpriseForm.get('creationYear')?.errors?.max">
+                  L'année de création doit être compris entre 1950 et 2021
                 </span>
               </span>
             </div>
@@ -237,10 +242,10 @@
                         [ngClass]="{'is-invalid': (enterpriseForm.get('societeDotCom')?.touched || enterpriseForm.get('societeDotCom')?.dirty) && !enterpriseForm.get('societeDotCom')?.valid }" />
               <span class="invalid-feedback">
                 <span *ngIf="enterpriseForm.get('societeDotCom')?.errors?.required">
-                  Veuillez saisir une adresse d'entreprise
+                  Veuillez saisir une adresse pour le profil société.com
                 </span>
                 <span *ngIf="enterpriseForm.get('societeDotCom')?.errors?.minlength">
-                  L'adresse doit comporter au moins 3 caractères
+                  L'adresse doit comporter au moins 13 caractères
                 </span>
               </span>
             </div>
@@ -262,10 +267,10 @@
                         [ngClass]="{'is-invalid': (enterpriseForm.get('linkedIn')?.touched || enterpriseForm.get('linkedIn')?.dirty) && !enterpriseForm.get('linkedIn')?.valid }" />
               <span class="invalid-feedback">
                 <span *ngIf="enterpriseForm.get('linkedIn')?.errors?.required">
-                  Veuillez saisir une adresse d'entreprise
+                  Veuillez saisir une adresse pour le profil linkedIn
                 </span>
                 <span *ngIf="enterpriseForm.get('linkedIn')?.errors?.minlength">
-                  L'adresse doit comporter au moins 3 caractères
+                  L'adresse doit comporter au moins 13 caractères
                 </span>
               </span>
             </div>
@@ -287,7 +292,7 @@
                         [ngClass]="{'is-invalid': (enterpriseForm.get('webSite')?.touched || enterpriseForm.get('webSite')?.dirty) && !enterpriseForm.get('webSite')?.valid }" />
               <span class="invalid-feedback">
                 <span *ngIf="enterpriseForm.get('webSite')?.errors?.required">
-                  Veuillez saisir une adresse d'entreprise
+                  Veuillez saisir une adresse pour le site web de l'entreprise
                 </span>
                 <span *ngIf="enterpriseForm.get('webSite')?.errors?.minlength">
                   L'adresse doit comporter au moins 3 caractères
@@ -303,7 +308,7 @@
 
       <div class='row'>
         <div class="col-md">
-          <label class="col-md col-form-label" for="introductionSpeechId">Année de création</label>
+          <label class="col-md col-form-label" for="introductionSpeechId">notes</label>
           <div class="form-group row mb-2">
             <div class="col-md">
                 <textarea

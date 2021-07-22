@@ -9,15 +9,15 @@
                   class="form-control"
                   id="firstName"
                   type="text"
-                  placeholder="Courriel du candidat"
+                  placeholder="Prénom du candidat"
                   formControlName="firstName"
                   title="Prénom du candidat">
             <span class="invalid-feedback">
               <span *ngIf="personForm.get('firstName')?.errors?.required">
-                Veuillez saisir une adresse courriel pour le candidat
+                Veuillez saisir le prénom du candidat
               </span>
               <span *ngIf="personForm.get('firstName')?.errors?.minlength">
-                Le courriel n'est pas au bon format
+                Le prénom doit comporter au moins 3 caractères
               </span>
             </span>
           </div>
@@ -29,10 +29,11 @@
                   name="lastName"
                   id="lastName"
                   formControlName="lastName"
+                  placeholder="Nom du candidat"
                   title="Nom de famille du candidat">
             <span class="invalid-feedback">
               <span *ngIf="personForm.get('lastName')?.errors?.required">
-                Veuillez saisir une adresse courriel pour le candidat
+                Veuillez saisir un nom pour le candidat
               </span>
               <span *ngIf="personForm.get('lastName')?.errors?.minlength">
                 Le courriel n'est pas au bon format
@@ -43,19 +44,20 @@
          </h1>
         <h4>
           <div class="col-md">
-            <label for="job">Emploi</label>
+            <label for="job">Intitulé du poste</label>
             <input
                   class="form-control"
                   name="job"
                   id="job"
+                  placeholder="Intitulé du poste"
                   formControlName="job"
                   title="Emploi du candidat">
             <span class="invalid-feedback">
               <span *ngIf="personForm.get('job')?.errors?.required">
-                Veuillez saisir une adresse courriel pour le candidat
+                Veuillez saisir un intitulé de poste
               </span>
               <span *ngIf="personForm.get('job')?.errors?.minlength">
-                Le courriel n'est pas au bon format
+                L'intitulé doit comporter au moins 3 caractère
               </span>
             </span>
           </div>
@@ -69,15 +71,16 @@
         <div class="col-md" >
           <label for="EntrepriseListId">Entreprise</label>
           <select formControlName="entrepriseId" >
-            <option [value] = 1> - </option>
-
             <option *ngFor="let enterprise of EnterpriseList" [value]="enterprise.enterpriseId">{{enterprise.publicName}}</option>
           </select>
         </div>
 
         <div class="col-md">
-          <label for="Adress1">Sexe</label>
-          <input readonly=""  class="form-control" name="gender" id="gender" value="{{person.gender.toString()}}" title="Sexe du candidat">
+          <label for="Gender">Sexe</label>
+          <select formControlName="Gender" >
+            <option [value] = 2> Femme </option>
+            <option [value] = 3> Homme </option>
+            </select>
         </div>
 
 
@@ -91,7 +94,7 @@
               class="form-control"
               id="emailAdressId"
               type="text"
-              placeholder="Courriel du candidat"
+              placeholder="em@il.com"
               formControlName="emailAdress"
               title="Courriel du candidat">
         <span class="invalid-feedback">
@@ -111,6 +114,7 @@
               name="phoneNumber"
               id="phoneNumber"
               formControlName="phoneNumber"
+              placeholder="06 XX XX XX XX"
               title="Numéro de téléphone du candidat">
         <span class="invalid-feedback">
           <span *ngIf="personForm.get('phoneNumber')?.errors?.required">
@@ -129,12 +133,11 @@
               name="linkedIn"
               id="linkedIn"
               formControlName="linkedIn"
+              placeholder="www.LinkedIn.com/candidat"
               [ngClass]="{'is-invalid': (personForm.get('linkedIn')?.touched || personForm.get('linkedIn')?.dirty) && !personForm.get('linkedIn')?.valid }"
               title="Lien vers le profil LinkedIn du candidat">
         <span class="invalid-feedback">
-          <span *ngIf="personForm.get('linkedIn')?.errors?.required">
-            Veuillez saisir une adresse courriel pour le candidat
-          </span>
+
           <span *ngIf="personForm.get('linkedIn')?.errors?.minlength">
             Le courriel n'est pas au bon format
           </span>
@@ -152,15 +155,16 @@
         <input
                 class="form-control"
                 name="city"
+                placeholder="Ville"
                 id="city"
                 formControlName="city"
                 [ngClass]="{'is-invalid': (personForm.get('city')?.touched || personForm.get('city')?.dirty) && !personForm.get('city')?.valid }">
         <span class="invalid-feedback">
           <span *ngIf="personForm.get('city')?.errors?.required">
-            Veuillez saisir une adresse courriel pour le candidat
+            Veuillez saisir une ville
           </span>
           <span *ngIf="personForm.get('city')?.errors?.minlength">
-            Le courriel n'est pas au bon format
+            La ville doit comporter au moins 3 caractères
           </span>
         </span>
       </div>
@@ -172,15 +176,16 @@
                 class="form-control"
                 name="zipCode"
                 id="zipCode"
+                placeholder="92100"
                 value="{{person.zipCode}}"
                 formControlName="zipCode"
                 title="Code postal du candidat">
         <span class="invalid-feedback">
           <span *ngIf="personForm.get('zipCode')?.errors?.required">
-            Veuillez saisir une adresse courriel pour le candidat
+            Veuillez saisir un code postal
           </span>
           <span *ngIf="personForm.get('zipCode')?.errors?.minlength">
-            Le courriel n'est pas au bon format
+            Le code postal doit être composé de 5 chiffres
           </span>
         </span>
       </div>
@@ -205,7 +210,17 @@
         <button class='btn btn-outline-primary'
                 style='width:80px'
                 (click)='onBack()'>
-          <i class='fa fa-chevron-left'></i> Back
+          <i class='fa fa-chevron-left'></i> retour
+        </button>
+
+
+
+        <button class="btn btn-outline-primary  pull-right"
+                type="submit"
+                style="width:80px"
+                [title]="personForm.valid ? 'Sauvegarde de vos données' : 'Veuillez corriger les erreurs du formulaire '"
+                >
+                <i class='fa fa-save'>Valider</i>
         </button>
 
       </div>

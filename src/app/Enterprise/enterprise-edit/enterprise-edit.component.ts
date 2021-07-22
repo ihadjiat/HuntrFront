@@ -29,17 +29,17 @@ export class EnterpriseEditComponent implements OnInit {
 
     this.enterpriseForm = this.fb.group({
       publicName:  [ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      siret :[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      siret :[ '',[ Validators.required, Validators.minLength( 14 ), Validators.maxLength( 14 ) ] ],
       adress1:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      adress2:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      zipCode:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      city:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      staffSize:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      creationYear:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      adress2:[ '',[ Validators.minLength( 3 ) ] ],
+      zipCode:[ '',[ Validators.required, Validators.minLength( 5 ), Validators.minLength( 5 ) ] ],
+      city:[ '',[ Validators.required, Validators.minLength( 1 ) ] ],
+      staffSize:[ '',[ Validators.required ] ],
+      creationYear:[ '',[ Validators.required, Validators.min( 1950 ), Validators.max( ( new Date().getFullYear() ) ) ] ],
       introductionSpeech:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      linkedIn:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      linkedIn:[ '',[ Validators.required, Validators.minLength( 13 ) ] ],
       webSite:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
-      societeDotCom:[ '',[ Validators.required, Validators.minLength( 3 ) ] ],
+      societeDotCom:[ '',[ Validators.required, Validators.minLength( 13 ) ] ],
     });
 
     this.enterpriseForm.get('city')!.valueChanges.subscribe({

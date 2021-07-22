@@ -3,6 +3,7 @@ import { stringify } from "@angular/compiler/src/util";
 import { Injectable } from "@angular/core";
 import { Observable, of, scheduled, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
+import { server } from "../Utils";
 import { Enterprise } from "./Enterprise";
 
 
@@ -10,10 +11,12 @@ import { Enterprise } from "./Enterprise";
   providedIn: 'root'
 })
 export class EnterpriseService {
-  private EnterpriseListUrl = 'https://localhost:44343/api/Enterprise';
-  private EnterpriseDetailsUrl = 'https://localhost:44343/api/Enterprise/';
-  private createEnterpriseUrl = 'https://localhost:44343/api/Enterprise/';
-  private DeleteEnterpriseUrl = 'https://localhost:44343/api/Enterprise/';
+
+  private EnterpriseUrl = server.concat('Enterprise/');
+  private EnterpriseListUrl = this.EnterpriseUrl.concat('');
+  private EnterpriseDetailsUrl = this.EnterpriseUrl.concat('');
+  private createEnterpriseUrl = this.EnterpriseUrl.concat('');
+  private DeleteEnterpriseUrl = this.EnterpriseUrl.concat('');
 
 
   constructor(private http: HttpClient) { }

@@ -57,7 +57,10 @@ export class PersonListComponent implements OnInit {
         person.setPersonExperience();
       })
   }
-
+  OnNew():void
+  {
+    this.router.navigate(['Person/0/edit']);
+  }
   setPeopleEnterprise(enterprises : Enterprise[]) : void
   {
       this.People.forEach( person =>

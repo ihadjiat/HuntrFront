@@ -1,24 +1,27 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, throwError } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
+import { server } from "../Utils";
 import { Person } from "./Person";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService {
+
   updatepersons(p: any) {
     throw new Error('Method not implemented.');
   }
   createpersons(p: any) {
     throw new Error('Method not implemented.');
   }
-  private personListUrl = 'https://localhost:44343/api/Person';
-  private personDetailsUrl = 'https://localhost:44343/api/Person/';
-  private deletePersonUrl='https://localhost:44343/api/Person/';
-  private createPersonUrl='https://localhost:44343/api/Person/';
-  private personListByContractUrl='https://localhost:44343/api/Person/GetPeopleByContractId/';
+  private personUrl = server.concat('Person/');
+  private personListUrl = this.personUrl.concat('');
+  private personDetailsUrl = this.personUrl.concat('');
+  private deletePersonUrl= this.personUrl.concat('');
+  private createPersonUrl=this.personUrl.concat('');
+  private personListByContractUrl=this.personUrl.concat('GetPeopleByContractId/');
 
 
 
@@ -36,10 +39,11 @@ export class PersonService {
 
   getPersonById(Id: string | number | null): Observable<Person>
   {
-    if(Id === null)
+    if(Id === null || Id === 0)
     {
-      Id = 0;
+      return of(this.initializeperson());
     }
+
     return this.http.get<Person>(this.personDetailsUrl.concat(Id.toString())).
                                         pipe(
                                             tap(data =>
